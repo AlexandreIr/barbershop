@@ -16,11 +16,11 @@ model User {
   bookings Booking[]
 }
 
-model BarberShop {
+model Barbershop {
   id       String    @id @default(uuid())
   name     String
-  addresss String
-  imageURL String
+  address String
+  imageUrl String
   services Service[]
   Booking  Booking[]
 }
@@ -30,9 +30,9 @@ model Service {
   name         String
   price        Decimal    @db.Decimal(10, 2)
   barbershopId String
-  barbershop   BarberShop @relation(fields: [barbershopId], references: [id])
+  barbershop   Barbershop @relation(fields: [barbershopId], references: [id])
   description  String
-  imageURL     String
+  imageUrl     String
   Bookings      Booking[]
 }
 
@@ -45,7 +45,7 @@ model Booking {
   date         DateTime
   status       String
   barbershopId String
-  barbershop   BarberShop @relation(fields: [barbershopId], references: [id])
+  barbershop   Barbershop @relation(fields: [barbershopId], references: [id])
   createAt     DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 }
