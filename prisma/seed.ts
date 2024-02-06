@@ -96,7 +96,10 @@ async function seedDatabase() {
 
     // Criar 10 barbearias com nomes e endereços fictícios
 
+
     const barbershops = [];
+    await prisma.barbershop.deleteMany({where: {}})
+    await prisma.service.deleteMany({where: {}})
     for (let i = 0; i < 10; i++) {
       const name = creativeNames[i];
       const address = addresses[i];
@@ -110,8 +113,6 @@ async function seedDatabase() {
           imageUrl: imageUrl,
         },
       });
-
-      await prisma.service.deleteMany({where:{}})
 
       for (const service of services) {
         await prisma.service.create({
